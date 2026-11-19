@@ -14,29 +14,77 @@
   scroll-behavior: smooth;
 }
 
+:root {
+  --purple: #a855f7;
+  --blue: #38bdf8;
+  --dark: #070713;
+  --panel: #111126;
+}
+
 body {
-  background: #080610;
+  background:
+    radial-gradient(ellipse at top, #211044, transparent 55%),
+    var(--dark);
   color: white;
   font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
+
+/* HEADER */
 
 header {
   text-align: center;
-  padding: 35px 15px;
-  background: #130b20;
-  border-bottom: 2px solid #9b35ff;
-  box-shadow: 0 0 25px #8b2cff;
+  padding: 45px 15px 30px;
+  background: linear-gradient(135deg, #10091e, #10132d);
+  border-bottom: 1px solid var(--purple);
+  position: relative;
+  overflow: hidden;
 }
 
-header h1 {
-  font-size: 38px;
-  color: #c084ff;
-  text-shadow: 0 0 15px #a020f0;
+.logo {
+  font-size: 43px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #d8b4fe;
+  text-shadow:
+    0 0 10px #a855f7,
+    0 0 30px #7c3aed;
 }
 
 header p {
-  letter-spacing: 4px;
   margin-top: 10px;
+  letter-spacing: 5px;
+  color: #a5b4fc;
+  font-size: 12px;
+}
+
+/* DRAGON ANIMATION */
+
+.dragon {
+  font-size: 75px;
+  display: inline-block;
+  margin: 15px;
+  filter: drop-shadow(0 0 15px #a855f7);
+  animation: dragonFloat 3s ease-in-out infinite,
+             dragonGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes dragonFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-17px) rotate(5deg);
+  }
+}
+
+@keyframes dragonGlow {
+  from {
+    filter: drop-shadow(0 0 8px #a855f7);
+  }
+  to {
+    filter: drop-shadow(0 0 28px #38bdf8);
+  }
 }
 
 /* NAVBAR */
@@ -44,143 +92,222 @@ header p {
 nav {
   display: flex;
   justify-content: center;
-  gap: 25px;
-  padding: 18px 10px;
-  background: #100a19;
-  border-bottom: 1px solid #49206c;
+  gap: 22px;
+  padding: 17px 8px;
+  background: #0d0b1b;
+  border-bottom: 1px solid #35205b;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: bold;
+  transition: .3s;
 }
 
 nav a:hover {
-  color: #bd83ff;
+  color: var(--blue);
+  text-shadow: 0 0 12px var(--blue);
 }
 
-/* CONTAINER */
+/* HERO */
 
 .container {
-  max-width: 650px;
+  max-width: 1000px;
+  padding: 25px 18px;
   margin: auto;
-  padding: 25px;
 }
 
-.welcome {
+.hero {
   text-align: center;
-  padding: 45px 10px;
+  padding: 60px 10px;
 }
 
-.welcome h2 {
-  color: #c084ff;
-  font-size: 27px;
-  text-shadow: 0 0 12px #8b2cff;
+.hero h2 {
+  font-size: 32px;
+  color: #d8b4fe;
+  text-shadow: 0 0 20px #9333ea;
 }
 
-.welcome p {
-  color: #aaa;
+.hero p {
+  color: #a5a5c5;
   margin-top: 15px;
+  line-height: 1.7;
 }
 
-/* CARD */
-
-.card {
-  background: #160d25;
-  border: 1px solid #923aff;
-  border-radius: 15px;
-  padding: 25px;
-  margin-bottom: 22px;
-  box-shadow: 0 0 15px #6820a055;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px #8b2cff;
-}
-
-.card h3 {
-  color: #c084ff;
-  margin-bottom: 12px;
-}
-
-.card p {
-  color: #bbb;
-  margin-bottom: 15px;
-}
-
-/* BUTTON */
-
-.btn {
+.tag {
   display: inline-block;
-  background: #8b2cff;
-  color: white;
-  padding: 12px 25px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #b56aff;
-  box-shadow: 0 0 15px #a020f0;
+  border: 1px solid var(--purple);
+  color: #d8b4fe;
+  padding: 8px 18px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  font-size: 11px;
+  letter-spacing: 2px;
 }
 
 /* SECTION */
 
 .section-title {
-  color: #c084ff;
   text-align: center;
-  margin: 45px 0 25px;
+  color: #d8b4fe;
   font-size: 25px;
+  margin: 35px 0 10px;
+  text-shadow: 0 0 15px #9333ea;
 }
 
-.status {
-  color: #ffbd59;
+.section-subtitle {
+  text-align: center;
+  color: #8888a8;
   font-size: 13px;
-  margin-top: 12px;
+  margin-bottom: 30px;
+}
+
+/* PRODUCTS */
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.product {
+  background: linear-gradient(145deg, #19152c, #0d1022);
+  border: 1px solid #6633a5;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 15px #7029a522;
+  transition: .3s;
+}
+
+.product:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 0 25px #9333ea77;
+}
+
+.product img {
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+  background: #080a17;
+  display: block;
+}
+
+.product-info {
+  padding: 16px;
+}
+
+.product-info h3 {
+  color: #d8b4fe;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.product-info p {
+  color: #aaa;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #67e8f9;
+  margin: 15px 0;
+}
+
+.order {
+  display: block;
+  text-align: center;
+  padding: 12px 8px;
+  background: linear-gradient(90deg, #7c3aed, #2563eb);
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* TOPUP */
+
+.panel {
+  background: var(--panel);
+  border: 1px solid #59318a;
+  padding: 25px;
+  border-radius: 15px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .game {
-  background: #211333;
   padding: 15px;
-  border-radius: 10px;
   margin: 12px 0;
-  border: 1px solid #49206c;
+  background: #1c1932;
+  border: 1px solid #392b60;
+  border-radius: 10px;
+  color: #d8b4fe;
 }
 
-.game h4 {
-  color: #d4aaff;
-  margin-bottom: 8px;
+/* CONTACT */
+
+.contact {
+  text-align: center;
+  padding: 35px 15px;
+  background: linear-gradient(135deg, #17102c, #10152c);
+  border: 1px solid #7136a7;
+  border-radius: 15px;
+  margin-top: 30px;
 }
+
+.contact h2 {
+  color: #d8b4fe;
+  margin-bottom: 15px;
+}
+
+.contact p {
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+/* FOOTER */
 
 footer {
   text-align: center;
-  padding: 25px;
-  color: #888;
-  border-top: 1px solid #49206c;
-  margin-top: 40px;
+  padding: 30px 15px;
+  color: #777;
+  font-size: 12px;
+  border-top: 1px solid #39205e;
+  margin-top: 45px;
+  line-height: 2;
 }
 
-@media(max-width: 400px) {
+@media(max-width: 500px) {
+  .logo {
+    font-size: 33px;
+  }
+
+  .hero h2 {
+    font-size: 25px;
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+  }
+
+  .product img {
+    height: 220px;
+  }
+
   nav {
-    gap: 14px;
+    gap: 15px;
   }
 
   nav a {
-    font-size: 12px;
-  }
-
-  header h1 {
-    font-size: 32px;
+    font-size: 10px;
   }
 }
 </style>
@@ -188,68 +315,108 @@ footer {
 
 <body>
 
-<!-- HEADER -->
-
 <header id="home">
-  <h1>DNX STORE</h1>
-  <p>DRAGON NIGHT X</p>
-</header>
 
-<!-- NAVIGATION -->
+  <div class="dragon">🐉</div>
+
+  <h1 class="logo">DNX STORE</h1>
+
+  <p>DRAGON NIGHT X</p>
+
+</header>
 
 <nav>
   <a href="#home">HOME</a>
-  <a href="#stok">STOK</a>
+  <a href="#stok">STOK AKUN</a>
   <a href="#topup">TOP UP</a>
   <a href="#contact">CONTACT</a>
 </nav>
 
-<div class="container">
+<main class="container">
 
-  <!-- WELCOME -->
+  <section class="hero">
 
-  <section class="welcome">
+    <span class="tag">ESTABLISHED 2022</span>
+
     <h2>WELCOME TO DNX STORE</h2>
-    <p>Your Trusted Digital Gaming Store</p>
-    <p>EST. 2022</p>
+
+    <p>
+      THE DRAGON EMPIRE<br>
+      Your Trusted Digital Gaming Store
+    </p>
+
+    <div class="dragon">🐉</div>
+
+    <p>
+      BUY ACCOUNT • TOP UP • GAMING SERVICE
+    </p>
+
   </section>
-
-  <!-- MENU UTAMA -->
-
-  <div class="card">
-    <h3>STOK AKUN</h3>
-    <p>Temukan akun game impianmu.</p>
-    <a href="#stok" class="btn">Lihat Stok</a>
-  </div>
-
-  <div class="card">
-    <h3>TOP UP ALL GAME</h3>
-    <p>Layanan top up berbagai game.</p>
-    <a href="#topup" class="btn">Top Up</a>
-  </div>
 
   <!-- STOK AKUN -->
 
   <section id="stok">
 
-    <h2 class="section-title">STOK AKUN</h2>
+    <h2 class="section-title">KOLEKSI AKUN</h2>
 
-    <div class="card">
-      <h3>MOBILE LEGENDS</h3>
-      <p>Daftar akun Mobile Legends DNX STORE.</p>
-      <p class="status">Stok belum ditambahkan</p>
-    </div>
+    <p class="section-subtitle">
+      MOBILE LEGENDS BANG BANG
+    </p>
 
-    <div class="card">
-      <h3>FREE FIRE</h3>
-      <p>Daftar akun Free Fire DNX STORE.</p>
-      <p class="status">Stok belum ditambahkan</p>
-    </div>
+    <div class="products">
 
-    <div class="card">
-      <h3>ROBLOX</h3>
-      <p>Daftar akun Roblox DNX STORE.</p>
-      <p class="status">Stok belum ditambahkan</p>
+      <!-- PRODUK 1 -->
+
+      <article class="product">
+
+        <img src="227023.jpg"
+             alt="Akun Mobile Legends pertama">
+
+        <div class="product-info">
+
+          <h3>AKUN ML #01</h3>
+
+          <p>
+            Kolektor Ternama IV<br>
+            Koleksi 206/1164 Skin
+          </p>
+
+          <div class="price">Rp150.000</div>
+
+          <a class="order"
+             href="https://wa.me/6281542367361?text=Halo%20Admin%20DNX%2C%20saya%20ingin%20memesan%20Akun%20ML%20%2301%20harga%20Rp150.000">
+             PESAN SEKARANG
+          </a>
+
+        </div>
+      </article>
+
+      <!-- PRODUK 2 -->
+
+      <article class="product">
+
+        <img src="210600.png"
+             alt="Akun Mobile Legends kedua">
+
+        <div class="product-info">
+
+          <h3>AKUN ML #02</h3>
+
+          <p>
+            Koleksi Mobile Legends<br>
+            Hubungi admin untuk detail
+          </p>
+
+          <div class="price">Rp400.000</div>
+
+          <a class="order"
+             href="https://wa.me/6281542367361?text=Halo%20Admin%20DNX%2C%20saya%20ingin%20memesan%20Akun%20ML%20%2302%20harga%20Rp400.000">
+             PESAN SEKARANG
+          </a>
+
+        </div>
+      </article>
+
     </div>
 
   </section>
@@ -260,23 +427,33 @@ footer {
 
     <h2 class="section-title">TOP UP ALL GAME</h2>
 
-    <div class="card">
+    <p class="section-subtitle">
+      PILIH GAME FAVORITMU
+    </p>
+
+    <div class="panel">
+
       <div class="game">
-        <h4>MOBILE LEGENDS</h4>
-        <p>Top up Diamond MLBB</p>
+        MOBILE LEGENDS
       </div>
 
       <div class="game">
-        <h4>FREE FIRE</h4>
-        <p>Top up Diamond FF</p>
+        FREE FIRE
       </div>
 
       <div class="game">
-        <h4>ROBLOX</h4>
-        <p>Top up Robux</p>
+        ROBLOX
       </div>
 
-      <a href="#contact" class="btn">Pilih Layanan</a>
+      <div class="game">
+        GAME LAINNYA
+      </div>
+
+      <a class="order"
+         href="https://wa.me/6281542367361?text=Halo%20Admin%20DNX%2C%20saya%20ingin%20bertanya%20tentang%20layanan%20top%20up">
+         TANYA HARGA TOP UP
+      </a>
+
     </div>
 
   </section>
@@ -285,27 +462,37 @@ footer {
 
   <section id="contact">
 
-    <h2 class="section-title">CONTACT ADMIN</h2>
+    <div class="contact">
 
-    <div class="card">
-      <h3>DNX STORE ADMIN</h3>
-      <p>Butuh bantuan atau ingin melakukan pemesanan?</p>
+      <h2>CONTACT ADMIN</h2>
 
-      <a href="https://wa.me/6281542367361"
-         class="btn"
+      <p>
+        Tertarik dengan produk DNX STORE?<br>
+        Hubungi admin untuk informasi lebih lanjut.
+      </p>
+
+      <a class="order"
+         href="https://wa.me/6281542367361"
          target="_blank">
-         WhatsApp Admin
+         WHATSAPP ADMIN
       </a>
+
     </div>
 
   </section>
 
-</div>
+</main>
 
 <footer>
-  <p>© 2026 DNX STORE</p>
+
+  <h3>DNX STORE</h3>
+
+  <p>DRAGON NIGHT X</p>
+
   <p>POWERED BY DRAGON NIGHT X</p>
-  <p>ALL RIGHTS RESERVED</p>
+
+  <p>© 2026 DNX STORE. ALL RIGHTS RESERVED.</p>
+
 </footer>
 
 </body>
